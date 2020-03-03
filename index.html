@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>zhitaoZ's blog</title>
+    <title>My New Hugo Site</title>
 
     
 
 
   
-  <meta name="author" content="zhitaoZ" />
-  <meta name="description" content="have a try" />
+  <meta name="author" content="" />
+  <meta name="description" content="" />
 
 
 
@@ -110,18 +110,25 @@
 
   <div class="image">
     
-      <img src="/img/default2.jpg" alt="hugo搭建博客步骤" />
+      <img src="/img/default3.jpg" alt="hugo搭建博客步骤(windows)" />
     
   </div>
 
   <div class="content">
-    <a class="header" style="color: black !important;" href="https://zhitaoZ.github.io/post/bblog/">hugo搭建博客步骤</a>
+    <a class="header" style="color: black !important;" href="https://zhitaoZ.github.io/post/bblog/">hugo搭建博客步骤(windows)</a>
     <div class="meta">
       <p class="date">Tuesday, Mar 3, 2020</p>
       <p class="author">@ </p>
     </div>
     <div class="description">
-      第一步：下载并安装hugo,windows增加环境 第二步：hugo命令新建本地博客，下载主题，需安装git.本地启动 第三步：增加博客内容 第四步:部署到远端github仓库
+      第一步：下载并安装hugo并在windows中增加环境变量 hugo下载地址,根据windows系统下载64位或32位的.zip文件，将压缩包里面的三个文件解压到新建目录下，例如C:\hugo\bin.然后将此路径加入path环境变量中，[参考链接]（https://jingyan.baidu.com/article/60ccbcebad4fe964cab197c7.html）。
+第二步：hugo命令新建本地博客，下载主题，需安装git.本地启动 使用Hugo命令新建本地博客hugo new site name,其中name使用你喜欢的任意字段。然后在https://themes.gohugo.io/中找到喜欢的博客主题，使用git命令下载主题到name目录下。使用hugo命令hugo server -t theme’s name –buildDrafts本地启动博客。
+第三步：增加博客内容 使用hugo命令hugo new post/blog.md新增博客内容。
+第四步:部署到远端github仓库 在github上新建一个repository，注意名称必须是自己github账户名.github.io,然后使用hugo命令hugo –theme=theme’name –baseUrl=&#34;https://github账户名.github.io/” –buildDrafts开启博客。之后根目录下会生成pubilc文件夹。进入pubilc文件夹，将文件夹所有内容上传到刚刚github新建的repository中。命令如下： git init
+git add .
+git commit -m “first up” git remote add origin 新建repo的地址
+git push -u origin master
+使用地址”github账户名.github.io打开个人博客网站 
     </div>
   </div>
 
