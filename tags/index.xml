@@ -6,9 +6,28 @@
     <description>Recent content in Tags on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 03 Mar 2020 11:26:31 +0800</lastBuildDate>
     
 	<atom:link href="https://zhitaoZ.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>git</title>
+      <link>https://zhitaoZ.github.io/tags/git/</link>
+      <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
+      
+      <guid>https://zhitaoZ.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网站</title>
+      <link>https://zhitaoZ.github.io/tags/%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
+      
+      <guid>https://zhitaoZ.github.io/tags/%E7%BD%91%E7%AB%99/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
