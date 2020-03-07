@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>zhitaoZ&#39;s blog</title>
-    <link>https://zhitaoZ.github.io/</link>
-    <description>Recent content on zhitaoZ&#39;s blog</description>
+    <title>C on zhitaoZ&#39;s blog</title>
+    <link>https://zhitaoZ.github.io/tags/c/</link>
+    <description>Recent content in C on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <lastBuildDate>Fri, 06 Mar 2020 21:13:45 +0800</lastBuildDate>
     
-	<atom:link href="https://zhitaoZ.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhitaoZ.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://zhitaoZ.github.io/post/learnc1/</guid>
       <description>&lt;p&gt;C语言基础知识 (一)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>hugo搭建博客步骤(windows)</title>
-      <link>https://zhitaoZ.github.io/post/bblog/</link>
-      <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
-      
-      <guid>https://zhitaoZ.github.io/post/bblog/</guid>
-      <description>&lt;p&gt;hugo搭建博客步骤(windows)&lt;/p&gt;</description>
     </item>
     
   </channel>
