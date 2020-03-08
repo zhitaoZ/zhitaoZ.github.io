@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+C语言基础知识(二)
+</title>
+
+    
+
+
+  
+  <meta name="author" content="zhitaoZ" />
+  <meta name="description" content="No one is a island" />
+
+
+
+<meta name="generator" content="Hugo 0.65.3" />
+
+<link rel="canonical" href="https://zhitaoZ.github.io/post/learnc2/" />
+
+
+<meta property="og:title" content="C语言基础知识(二)" />
+<meta property="og:description" content="C语言基础知识 (二）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhitaoZ.github.io/post/learnc2/" />
+<meta property="article:published_time" content="2020-03-07T21:45:24+08:00" />
+<meta property="article:modified_time" content="2020-03-08T10:30:45+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C语言基础知识(二)"/>
+<meta name="twitter:description" content="C语言基础知识 (二）"/>
+
+
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background-image: url(/me/background.jpg);">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          C语言基础知识(二)
+          <div class="sub header">@ zhitaoZ · Saturday, Mar 7, 2020 · 3 minute read · Update at Mar 8, 2020</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;"><p>C语言基础知识 (二）</p>
+<h2 id="九c判断">九、C判断</h2>
+<p>C 语言把任何非零和非空的值假定为 true，把零或 null 假定为 false。</p>
+<h3 id="if判断语句">if判断语句</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">if</span>(boolean_expression <span style="color:#ae81ff">1</span>)
+{
+   <span style="color:#75715e">/* 当布尔表达式 1 为真时执行 */</span>
+}
+<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( boolean_expression <span style="color:#ae81ff">2</span>)
+{
+   <span style="color:#75715e">/* 当布尔表达式 2 为真时执行 */</span>
+}
+<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( boolean_expression <span style="color:#ae81ff">3</span>)
+{
+   <span style="color:#75715e">/* 当布尔表达式 3 为真时执行 */</span>
+}
+<span style="color:#66d9ef">else</span>
+{
+   <span style="color:#75715e">/* 当上面条件都不为真时执行 */</span>
+}
+</code></pre></div><p>一个 if 语句后可跟一个可选的 else if&hellip;else 语句，这可用于测试多种条件。
+当使用 if&hellip;else if&hellip;else 语句时，以下几点需要注意：</p>
+<ul>
+<li>一个 if 后可跟零个或一个 else，else 必须在所有 else if 之后。</li>
+<li>一个 if 后可跟零个或多个 else if，else if 必须在 else 之前。</li>
+<li>一旦某个 else if 匹配成功，其他的 else if 或 else 将不会被测试。</li>
+<li>，嵌套 if-else 语句是合法的，这意味着您可以在一个 if 或 else if 语句内使用另一个 if 或 else if 语句。</li>
+</ul>
+<h3 id="switch语句">switch语句</h3>
+<p>一个 switch 语句允许测试一个变量等于多个值时的情况。每个值称为一个 case，且被测试的变量会对每个 switch case 进行检查。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">switch</span>(expression){
+    <span style="color:#66d9ef">case</span> constant<span style="color:#f92672">-</span>expression  :
+       statement(s);
+       <span style="color:#66d9ef">break</span>; <span style="color:#75715e">/* 可选的 */</span>
+    <span style="color:#66d9ef">case</span> constant<span style="color:#f92672">-</span>expression  :
+       statement(s);
+       <span style="color:#66d9ef">break</span>; <span style="color:#75715e">/* 可选的 */</span>
+  
+    <span style="color:#75715e">/* 您可以有任意数量的 case 语句 */</span>
+    <span style="color:#66d9ef">default</span> <span style="color:#f92672">:</span> <span style="color:#75715e">/* 可选的 */</span>
+       statement(s);
+}
+</code></pre></div><p>switch 语句必须遵循下面的规则：</p>
+<ul>
+<li>switch 语句中的 expression 是一个常量表达式，必须是一个整型或枚举类型。</li>
+<li>在一个 switch 中可以有任意数量的 case 语句。每个 case 后跟一个要比较的值和一个冒号。</li>
+<li>case 的 constant-expression 必须与 switch 中的变量具有相同的数据类型，且必须是一个常量或字面量。</li>
+<li>当被测试的变量等于 case 中的常量时，case 后跟的语句将被执行，直到遇到 break 语句为止。</li>
+<li>当遇到 break 语句时，switch 终止，控制流将跳转到 switch 语句后的下一行。</li>
+<li>不是每一个 case 都需要包含 break。如果 case 语句不包含 break，控制流将会 继续 后续的 case，直到遇到 break 为止。</li>
+<li>一个 switch 语句可以有一个可选的 default case，出现在 switch 的结尾。default case 可用于在上面所有 case 都不为真时执行一个任务。default case 中的 break 语句不是必需的。</li>
+<li>switch语句可以嵌套使用。可以把一个 switch 作为一个外部 switch 的语句序列的一部分，即可以在一个 switch 语句内使用另一个 switch 语句。即使内部和外部 switch 的 case 常量包含共同的值，也没有矛盾。</li>
+</ul>
+<h3 id="运算符">？：运算符</h3>
+<p><img src="/img/1.png" alt="三元运算符"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Exp1 <span style="color:#f92672">?</span> Exp2 : Exp3;
+</code></pre></div><p>? 表达式的值是由 Exp1 决定的。如果 Exp1 为真，则计算 Exp2 的值，结果即为整个 ? 表达式的值。如果 Exp1 为假，则计算 Exp3 的值，结果即为整个 ? 表达式的值。</p>
+<h2 id="十c循环">十、C循环</h2>
+<h3 id="while循环">while循环</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">while</span>(condition)
+{
+   statement;
+}
+</code></pre></div><p>在这里，statement(s) 可以是一个单独的语句，也可以是几个语句组成的代码块。<br>
+condition 可以是任意的表达式，当为任意非零值时都为 true。当条件为 true 时执行循环。 当条件为 false 时，退出循环，程序流将继续执行紧接着循环的下一条语句。
+while 循环的关键点是循环可能一次都不会执行。当条件为 false 时，会跳过循环主体，直接执行紧接着 while 循环的下一条语句。</p>
+<h3 id="do-while循环">do while循环</h3>
+<p>do&hellip;while 循环与 while 循环类似，但是 do&hellip;while 循环会确保至少执行一次循环。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">do</span>
+{
+   statement;
+}<span style="color:#66d9ef">while</span>(condition);
+</code></pre></div><p>如果条件为真，控制流会跳转回上面的 do，然后重新执行循环中的 statement(s)。这个过程会不断重复，直到给定条件变为假为止。</p>
+<h3 id="for-循环">for 循环</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">for</span>(init,condition,increment)
+{
+   statement;
+}
+</code></pre></div><p>下面是 for 循环的控制流：</p>
+<ol>
+<li>init 会首先被执行，且只会执行一次。这一步允许您声明并初始化任何循环控制变量。您也可以不在这里写任何语句，只要有一个分号出现即可。</li>
+<li>接下来，会判断 condition。如果为真，则执行循环主体。如果为假，则不执行循环主体，且控制流会跳转到紧接着 for 循环的下一条语句。</li>
+<li>在执行完 for 循环主体后，控制流会跳回上面的 increment 语句。该语句允许您更新循环控制变量。该语句可以留空，只要在条件后有一个分号出现即可。</li>
+<li>条件再次被判断。如果为真，则执行循环，这个过程会不断重复（循环主体，然后增加步值，再然后重新判断条件）。在条件变为假时，for 循环终止。</li>
+</ol>
+<h3 id="嵌套循环">嵌套循环</h3>
+<p>可以在 while、for 或 do..while 循环内使用一个或多个循环。</p>
+<h3 id="循环控制语句">循环控制语句</h3>
+<ol>
+<li>
+<p>break语句
+C 语言中 break 语句有以下两种用法：</p>
+<ol>
+<li>当 break 语句出现在一个循环内时，循环会立即终止，且程序流将继续执行紧接着循环的下一条语句。</li>
+<li>它可用于终止 switch 语句中的一个 case。
+如果使用的是嵌套循环（即一个循环内嵌套另一个循环），break 语句会停止执行最内层的循环，然后开始执行该块之后的下一行代码。</li>
+</ol>
+</li>
+<li>
+<p>continue语句
+C 语言中的 continue 语句有点像 break 语句。但它不是强制终止，continue 会跳过当前循环中的代码，强迫开始下一次循环。<br>
+对于 for 循环，continue 语句执行后自增语句仍然会执行。对于 while 和 do&hellip;while 循环，continue 语句重新执行条件判断语句。</p>
+</li>
+<li>
+<p>goto语句<br>
+C 语言中的 goto 语句允许把控制无条件转移到同一函数内的被标记的语句。<br>
+注意：在任何编程语言中，都不建议使用 goto 语句。因为它使得程序的控制流难以跟踪，使程序难以理解和难以修改。任何使用 goto 语句的程序可以改写成不需要使用 goto 语句的写法。</p>
+</li>
+</ol>
+<h3 id="无限循环">无限循环</h3>
+<p>如果条件永远不为假，则循环将变成无限循环。for 循环在传统意义上可用于实现无限循环。由于构成循环的三个表达式中任何一个都不是必需的，您可以将某些条件表达式留空来构成一个无限循环。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+   <span style="color:#66d9ef">for</span>( ; ; )
+   {
+      printf(<span style="color:#e6db74">&#34;程序会永远执行下去！</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+   }
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>**注意：**使用<em>Ctrl + C</em>可以中止无限循环。</p>
+<h2 id="十一c函数">十一、C函数</h2>
+<p>函数是一组一起执行一个任务的语句。每个 C 程序都至少有一个函数，即主函数 main() ，所有简单的程序都可以定义其他额外的函数。<br>
+函数<strong>声明</strong>告诉编译器函数的名称、返回类型和参数。函数<strong>定义</strong>提供了函数的实际主体。<br>
+C 标准库提供了大量的程序可以调用的内置函数。例如，函数 strcat() 用来连接两个字符串，函数 memcpy() 用来复制内存到另一个位置。</p>
+<h3 id="定义函数">定义函数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">return_type <span style="color:#a6e22e">function_name</span>(parameter list)
+{
+   body of the function
+}
+</code></pre></div><p>在 C 语言中，函数由一个函数头和一个函数主体组成。下面列出一个函数的所有组成部分：</p>
+<ul>
+<li>返回类型：一个函数可以返回一个值。return_type 是函数返回的值的数据类型。有些函数执行所需的操作而不返回值，在这种情况下，return_type 是关键字 void。</li>
+<li>函数名称：这是函数的实际名称。函数名和参数列表一起构成了函数签名。</li>
+<li>参数：参数就像是占位符。当函数被调用时，您向参数传递一个值，这个值被称为实际参数。参数列表包括函数参数的类型、顺序、数量。参数是可选的，也就是说，函数可能不包含参数。</li>
+<li>函数主体：函数主体包含一组定义函数执行任务的语句。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* 函数返回两个数中较大的那个数 */</span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> num1, <span style="color:#66d9ef">int</span> num2) 
+{
+   <span style="color:#75715e">/* 局部变量声明 */</span>
+   <span style="color:#66d9ef">int</span> result;
+
+   <span style="color:#66d9ef">if</span> (num1 <span style="color:#f92672">&gt;</span> num2)
+      result <span style="color:#f92672">=</span> num1;
+   <span style="color:#66d9ef">else</span>
+      result <span style="color:#f92672">=</span> num2;
+
+   <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><h3 id="函数声明">函数声明</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">return_type <span style="color:#a6e22e">function_name</span>(parameter list);
+</code></pre></div><p>在一个源文件中定义函数且在另一个文件中调用函数时，函数声明是必需的。在这种情况下，应该在调用函数的文件顶部声明函数。</p>
+<h3 id="调用函数">调用函数</h3>
+<p>创建 C 函数时，会定义函数做什么，然后通过调用函数来完成已定义的任务。<br>
+当程序调用函数时，程序控制权会转移给被调用的函数。被调用的函数执行已定义的任务，当函数的返回语句被执行时，或到达函数的结束括号时，会把程序控制权交还给主程序。<br>
+调用函数时，传递所需参数，如果函数返回一个值，则可以存储返回值。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* 函数声明 */</span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> num1, <span style="color:#66d9ef">int</span> num2);
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
+{
+   <span style="color:#75715e">/* 局部变量定义 */</span>
+   <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+   <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>;
+   <span style="color:#66d9ef">int</span> ret;
+
+   <span style="color:#75715e">/* 调用函数来获取最大值 */</span>
+   ret <span style="color:#f92672">=</span> max(a, b);
+
+   printf( <span style="color:#e6db74">&#34;Max value is : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret );
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#75715e">/* 函数返回两个数中较大的那个数 */</span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> num1, <span style="color:#66d9ef">int</span> num2) 
+{
+   <span style="color:#75715e">/* 局部变量声明 */</span>
+   <span style="color:#66d9ef">int</span> result;
+
+   <span style="color:#66d9ef">if</span> (num1 <span style="color:#f92672">&gt;</span> num2)
+      result <span style="color:#f92672">=</span> num1;
+   <span style="color:#66d9ef">else</span>
+      result <span style="color:#f92672">=</span> num2;
+
+   <span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div><h3 id="函数参数">函数参数</h3>
+<p>如果函数要使用参数，则必须声明接受参数值的变量。这些变量称为函数的<strong>形式参数</strong>。<br>
+形式参数就像函数内的其他局部变量，在进入函数时被创建，退出函数时被销毁。<br>
+当调用函数时，有两种向函数传递参数的方式：</p>
+<table>
+<thead>
+<tr>
+<th>调用类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传值调用</td>
+<td>该方法把参数的实际值复制给函数的形式参数。在这种情况下，修改函数内的形式参数不会影响实际参数。</td>
+</tr>
+<tr>
+<td>引用调用</td>
+<td>通过指针传递方式，形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作。</td>
+</tr>
+</tbody>
+</table>
+<p>默认情况下，C 使用<strong>传值调用</strong>来传递参数。一般来说，这意味着函数内的代码不能改变用于调用函数的实际参数。</p>
+<h2 id="十二c作用域规则">十二、C作用域规则</h2>
+<p>任何一种编程中，作用域是程序中定义的变量所存在的区域，超过该区域变量就不能被访问。C 语言中有三个地方可以声明变量：</p>
+<ol>
+<li>在函数或块内部的局部变量</li>
+<li>在所有函数外部的全局变量</li>
+<li>在形式参数的函数参数定义中</li>
+</ol>
+<h3 id="局部变量">局部变量</h3>
+<p>在某个函数或块的内部声明的变量称为局部变量。它们只能被该函数或该代码块内部的语句使用。局部变量在函数外部是不可知的。</p>
+<h3 id="全局变量">全局变量</h3>
+<p>全局变量是定义在函数外部，通常是在程序的顶部。全局变量在整个程序生命周期内都是有效的，在任意的函数内部能访问全局变量。<br>
+全局变量可以被任何函数访问。也就是说，全局变量在声明后整个程序中都是可用的。<br>
+在程序中，局部变量和全局变量的名称可以相同，但是在函数内，如果两个名字相同，会使用局部变量值，全局变量不会被使用。</p>
+<h3 id="形式参数">形式参数</h3>
+<p>函数的参数，形式参数，被当作该函数内的局部变量，如果与全局变量同名它们会优先使用。</p>
+<p><em>全局变量与局部变量在内存中的区别：</em></p>
+<ul>
+<li>全局变量保存在内存的全局存储区中，占用静态的存储单元；</li>
+<li>局部变量保存在栈中，只有在所在函数被调用时才动态地为变量分配存储单元。</li>
+</ul>
+<h3 id="初始化局部变量和全局变量">初始化局部变量和全局变量</h3>
+<p>当局部变量被定义时，系统不会对其初始化，必须自行对其初始化。定义全局变量时，系统会自动对其初始化，如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>初始化默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>&rsquo;\0&rsquo;</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0</td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<p>正确地初始化变量是一个良好的编程习惯，否则有时候程序可能会产生意想不到的结果，因为未初始化的变量会导致一些在内存位置中已经可用的垃圾值。</p>
+<h2 id="十三c数组">十三、C数组</h2>
+<p>C 语言支持数组数据结构，它可以存储一个固定大小的相同类型元素的顺序集合。数组是用来存储一系列数据，但它往往被认为是一系列相同类型的变量。<br>
+所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</p>
+<h3 id="声明数组">声明数组</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type arrayName [ arraySize ];
+</code></pre></div><p>这叫做一维数组。arraySize 必须是一个大于零的整数常量，type 可以是任意有效的 C 数据类型。</p>
+<h3 id="初始化数组">初始化数组</h3>
+<p>在 C 中，可以逐个初始化数组，也可以使用一个初始化语句，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">double</span> balance[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1000.0</span>, <span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">3.4</span>, <span style="color:#ae81ff">7.0</span>, <span style="color:#ae81ff">50.0</span>};
+</code></pre></div><p>大括号 { } 之间的值的数目不能大于我们在数组声明时在方括号 [ ] 中指定的元素数目。<br>
+如果省略掉了数组的大小，数组的大小则为初始化时元素的个数。因此，如果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">double</span> balance[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1000.0</span>, <span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">3.4</span>, <span style="color:#ae81ff">7.0</span>, <span style="color:#ae81ff">50.0</span>};
+</code></pre></div><p>将创建一个数组，它与前一个实例中所创建的数组是完全相同的。下面是一个为数组中某个元素赋值的实例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">balance[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">50.0</span>;
+</code></pre></div><p>上述的语句把数组中第五个元素的值赋为 50.0。所有的数组都是以 0 作为它们第一个元素的索引，也被称为基索引，数组的最后一个索引是数组的总大小减去 1。</p>
+<h3 id="访问数组">访问数组</h3>
+<p>数组元素可以通过数组名称加索引进行访问。元素的索引是放在方括号内，跟在数组名称的后边。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">double</span> salary <span style="color:#f92672">=</span> balance[<span style="color:#ae81ff">9</span>];
+</code></pre></div><p>上面的语句将把数组中第 10 个元素的值赋给 salary 变量。</p>
+<p>学习内容来自 <a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a></p></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="/tags/c" title="C">C</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/psb25.jpg">
+      
+    </div>
+
+    <h3 class="ui header">zhitaoZ&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">No one is a island</div>
+    </h3>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="/tags/c" title="c">c</a>
+    
+      <a class="ui label" href="/tags/git" title="git">git</a>
+    
+      <a class="ui label" href="/tags/%E7%BD%91%E7%AB%99" title="网站">网站</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="/categories/%E8%87%AA%E5%AD%A6" class="item">自学</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc2/" class="item">C语言基础知识(二)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc1/" class="item">C语言基础知识(一)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/bblog/" class="item">hugo搭建博客步骤(windows)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui bottom attached center aligned segment">
+      
+      <p>© 2020 zhitaoZ&#39;s blog</p>
+      
+      <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu">
+          
+            <div class="item">
+              <a href="mailto:zhangzhitao@bupt.edu.cn">
+                <i class="large mail icon" title="email"></i>
+              </a>
+            </div>
+          
+
+          
+            <div class="item">
+              <a href="https://github.com/zhitaoZ" target="_blank">
+                <i class="large github icon" title="github"></i>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+        </nav>
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+
+
+
+  </body>
+</html>

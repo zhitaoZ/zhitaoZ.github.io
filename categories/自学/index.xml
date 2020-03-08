@@ -6,10 +6,19 @@
     <description>Recent content in 自学 on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 06 Mar 2020 21:13:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Mar 2020 21:45:24 +0800</lastBuildDate>
     
 	<atom:link href="https://zhitaoZ.github.io/categories/%E8%87%AA%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C语言基础知识(二)</title>
+      <link>https://zhitaoZ.github.io/post/learnc2/</link>
+      <pubDate>Sat, 07 Mar 2020 21:45:24 +0800</pubDate>
+      
+      <guid>https://zhitaoZ.github.io/post/learnc2/</guid>
+      <description>&lt;p&gt;C语言基础知识 (二）&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>C语言基础知识(一)</title>
