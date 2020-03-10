@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+C语言基础知识(三)
+</title>
+
+    
+
+
+  
+  <meta name="author" content="zhitaoZ" />
+  <meta name="description" content="No one is a island" />
+
+
+
+<meta name="generator" content="Hugo 0.65.3" />
+
+<link rel="canonical" href="https://zhitaoZ.github.io/post/learnc3/" />
+
+
+<meta property="og:title" content="C语言基础知识(三)" />
+<meta property="og:description" content="C语言基础知识 (三)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhitaoZ.github.io/post/learnc3/" />
+<meta property="article:published_time" content="2020-03-08T21:45:24+08:00" />
+<meta property="article:modified_time" content="2020-03-08T10:30:45+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C语言基础知识(三)"/>
+<meta name="twitter:description" content="C语言基础知识 (三)"/>
+
+
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background-image: url(/me/background.jpg);">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          C语言基础知识(三)
+          <div class="sub header">@ zhitaoZ · Sunday, Mar 8, 2020 · 6 minute read · Update at Mar 8, 2020</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;"><p>C语言基础知识 (三)</p>
+<h2 id="十四c-enum枚举">十四、C enum(枚举)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">enum</span> <span style="color:#960050;background-color:#1e0010">枚举名</span>{<span style="color:#960050;background-color:#1e0010">枚举元素</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，枚举元素</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span>......}; <span style="color:#75715e">//枚举语法定义格式
+</span></code></pre></div><p><strong>注意</strong>：第一个枚举成员的默认值为整型的 0，后续枚举成员的值在前一个成员上加 1。</p>
+<h3 id="枚举变量的定义">枚举变量的定义</h3>
+<p>1.先定义枚举类型，再定义枚举变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">enum</span> DAY
+{
+      MON<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, TUE, WED, THU, FRI, SAT, SUN
+};
+<span style="color:#66d9ef">enum</span> DAY day;
+</code></pre></div><p>2.定义枚举类型的同时定义枚举变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">enum</span> DAY
+{
+      MON<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, TUE, WED, THU, FRI, SAT, SUN
+} day;
+</code></pre></div><p>3.省略枚举名称，直接定义枚举变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">enum</span>
+{
+      MON<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, TUE, WED, THU, FRI, SAT, SUN
+} day;
+</code></pre></div><p>在C 语言中，枚举类型是被当做 int 或者 unsigned int 类型来处理的，所以按照 C 语言规范是没有办法遍历枚举类型的。<br>
+不过在一些特殊的情况下，枚举类型必须连续是可以实现有条件的遍历。<br>
+枚举类型不连续，这种枚举无法遍历。</p>
+<h3 id="将整数转换为枚举">将整数转换为枚举</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+
+    <span style="color:#66d9ef">enum</span> day
+    {
+        saturday,
+        sunday,
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday
+    } workday;
+
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">enum</span> day weekend;
+    weekend <span style="color:#f92672">=</span> ( <span style="color:#66d9ef">enum</span> day ) a;  <span style="color:#75715e">//类型转换
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//weekend = a; //错误
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74">&#34;weekend:%d&#34;</span>,weekend);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="十五c指针">十五、C指针</h3>
+<p>每一个变量都有一个内存位置，每一个内存位置都定义了可使用连字号（&amp;）运算符访问的地址，它表示了在内存中的一个地址。</p>
+<h3 id="什么是指针">什么是指针？</h3>
+<p>指针是一个变量，其值为另一个变量的地址，即，内存位置的直接地址。就像其他变量或常量一样，必须在使用指针存储其他变量地址之前，对其进行声明。指针变量声明的一般形式为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type <span style="color:#f92672">*</span>var<span style="color:#f92672">-</span>name;
+</code></pre></div><p>type 是指针的基类型，它必须是一个有效的 C 数据类型，var-name 是指针变量的名称。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span>    <span style="color:#f92672">*</span>ip;    <span style="color:#75715e">/* 一个整型的指针 */</span>
+<span style="color:#66d9ef">double</span> <span style="color:#f92672">*</span>dp;    <span style="color:#75715e">/* 一个 double 型的指针 */</span>
+<span style="color:#66d9ef">float</span>  <span style="color:#f92672">*</span>fp;    <span style="color:#75715e">/* 一个浮点型的指针 */</span>
+<span style="color:#66d9ef">char</span>   <span style="color:#f92672">*</span>ch;     <span style="color:#75715e">/* 一个字符型的指针 */</span>
+</code></pre></div><p>所有实际数据类型，不管是整型、浮点型、字符型，还是其他的数据类型，对应指针的值的类型都是一样的，都是一个代表内存地址的长的十六进制数。<br>
+不同数据类型的指针之间唯一的不同是，指针所指向的变量或常量的数据类型不同。</p>
+<h3 id="如何使用指针">如何使用指针</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
+{
+   <span style="color:#66d9ef">int</span>  var <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;   <span style="color:#75715e">/* 实际变量的声明 */</span>
+   <span style="color:#66d9ef">int</span>  <span style="color:#f92672">*</span>ip;        <span style="color:#75715e">/* 指针变量的声明 */</span>
+
+   ip <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>var;  <span style="color:#75715e">/* 在指针变量中存储 var 的地址 */</span>
+
+   printf(<span style="color:#e6db74">&#34;Address of var variable: %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>var  );
+
+   <span style="color:#75715e">/* 在指针变量中存储的地址 */</span>
+   printf(<span style="color:#e6db74">&#34;Address stored in ip variable: %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ip );
+
+   <span style="color:#75715e">/* 使用指针访问值 */</span>
+   printf(<span style="color:#e6db74">&#34;Value of *ip variable: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">*</span>ip );
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="c中的null指针">C中的NULL指针</h3>
+<p>在变量声明的时候，如果没有确切的地址可以赋值，为指针变量赋一个 NULL 值是一个良好的编程习惯。赋为 NULL 值的指针被称为空指针。<br>
+NULL 指针是一个定义在标准库中的值为零的常量。请看下面的程序：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
+{
+   <span style="color:#66d9ef">int</span>  <span style="color:#f92672">*</span>ptr <span style="color:#f92672">=</span> NULL;
+
+   printf(<span style="color:#e6db74">&#34;ptr 的地址是 %p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ptr  );
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>在大多数的操作系统上，程序不允许访问地址为 0 的内存，因为该内存是操作系统保留的。然而，内存地址 0 有特别重要的意义，它表明该指针不指向一个可访问的内存位置。但按照惯例，如果指针包含空值（零值），则假定它不指向任何东西。</p>
+<h3 id="c指针的算数运算">C指针的算数运算</h3>
+<p>可以对指针进行四种算术运算：++、&ndash;、+、-。</p>
+<ul>
+<li>指针的每一次递增，它其实会指向下一个元素的存储单元。
+-指针的每一次递减，它都会指向前一个元素的存储单元。
+-指针在递增和递减时跳跃的字节数取决于指针所指向变量数据类型长度，比如 int 就是 4 个字节。</li>
+</ul>
+<p>指针可以用关系运算符进行比较，如 ==、&lt; 和 &gt;。</p>
+<h3 id="c指针数组">C指针数组</h3>
+<p>我们想要让数组存储指向 int 或 char 或其他数据类型的指针。下面是一个指向整数的指针数组的声明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>ptr[MAX];
+</code></pre></div><p>在这里，把 ptr 声明为一个数组，由 MAX 个整数指针组成。因此，ptr 中的每个元素，都是一个指向 int 值的指针。</p>
+<h3 id="c指向指针的指针">C指向指针的指针</h3>
+<p>指向指针的指针是一种多级间接寻址的形式，或者说是一个指针链。通常，一个指针包含一个变量的地址。当我们定义一个指向指针的指针时，第一个指针包含了第二个指针的地址，第二个指针指向包含实际值的位置。</p>
+<p><img src="/img/pointer_to_pointer.jpg" alt="指针链"></p>
+<p>一个指向指针的指针变量必须如下声明，即在变量名前放置两个星号。例如，下面声明了一个指向 int 类型指针的指针：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#f92672">**</span> var;
+</code></pre></div><h3 id="c传递指针给函数">C传递指针给函数</h3>
+<p>C 语言允许传递指针给函数，只需要简单地声明函数参数为指针类型即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#75715e">/* 函数声明 */</span>
+<span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getAverage</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> size);
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
+{
+   <span style="color:#75715e">/* 带有 5 个元素的整型数组  */</span>
+   <span style="color:#66d9ef">int</span> balance[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">50</span>};
+   <span style="color:#66d9ef">double</span> avg;
+
+   <span style="color:#75715e">/* 传递一个指向数组的指针作为参数 */</span>
+   avg <span style="color:#f92672">=</span> getAverage( balance, <span style="color:#ae81ff">5</span> ) ;
+
+   <span style="color:#75715e">/* 输出返回值  */</span>
+   printf(<span style="color:#e6db74">&#34;Average value is: %f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, avg );
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getAverage</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> size)
+{
+  <span style="color:#66d9ef">int</span>    i, sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">double</span> avg;
+ 
+  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> size; <span style="color:#f92672">++</span>i)
+  {
+    sum <span style="color:#f92672">+=</span> arr[i];
+  }
+
+  avg <span style="color:#f92672">=</span> (<span style="color:#66d9ef">double</span>)sum <span style="color:#f92672">/</span> size;
+
+  <span style="color:#66d9ef">return</span> avg;
+}
+</code></pre></div><h3 id="c-从函数返回指针">C 从函数返回指针</h3>
+<p>C 允许您从函数返回指针。为了做到这点，您必须声明一个返回指针的函数，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">myFunction</span>()
+{
+  .
+  .
+}
+</code></pre></div><p>C 语言不支持在调用函数时返回局部变量的地址，除非定义局部变量为 static 变量。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;time.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt; </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#75715e">/* 要生成和返回随机数的函数 */</span>
+<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">getRandom</span>( )
+{
+   <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span>  r[<span style="color:#ae81ff">10</span>];
+   <span style="color:#66d9ef">int</span> i;
+
+   <span style="color:#75715e">/* 设置种子 */</span>
+   srand( (<span style="color:#66d9ef">unsigned</span>)time( NULL ) );
+   <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#f92672">++</span>i)
+   {
+      r[i] <span style="color:#f92672">=</span> rand();
+      printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, r[i] );
+   }
+
+   <span style="color:#66d9ef">return</span> r;
+}
+
+<span style="color:#75715e">/* 要调用上面定义函数的主函数 */</span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> ()
+{
+   <span style="color:#75715e">/* 一个指向整数的指针 */</span>
+   <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p;
+   <span style="color:#66d9ef">int</span> i;
+
+   p <span style="color:#f92672">=</span> getRandom();
+   <span style="color:#66d9ef">for</span> ( i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span> )
+   {
+       printf(<span style="color:#e6db74">&#34;*(p + [%d]) : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i, <span style="color:#f92672">*</span>(p <span style="color:#f92672">+</span> i) );
+   }
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="十六函数指针与回调函数">十六、函数指针与回调函数</h2>
+<h3 id="函数指针">函数指针</h3>
+<p>函数指针是指向函数的指针变量。<br>
+通常我们说的指针变量是指向一个整型、字符型或数组等变量，而函数指针是指向函数。<br>
+函数指针可以像一般函数一样，用于调用函数、传递参数。<br>
+函数指针变量的声明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">int</span> (<span style="color:#f92672">*</span>fun_ptr)(<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span>); <span style="color:#75715e">// 声明一个指向同样参数、返回值的函数指针类型
+</span></code></pre></div><h3 id="回调函数">回调函数</h3>
+<p><strong>函数指针作为某个函数的参数</strong></p>
+<p>函数指针变量可以作为某个函数的参数来使用的，回调函数就是一个通过函数指针调用的函数。<br>
+简单讲：回调函数是由别人的函数执行时调用你实现的函数。</p>
+<ul>
+<li>你到一个商店买东西，刚好你要的东西没有货，于是你在店员那里留下了你的电话，过了几天店里有货了，店员就打了你的电话，然后你接到电话后就到店里去取了货。在这个例子里，你的电话号码就叫回调函数，你把电话留给店员就叫登记回调函数，店里后来有货了叫做触发了回调关联的事件，店员给你打电话叫做调用回调函数，你到店里去取货叫做响应回调事件。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;  </span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 回调函数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">populate_array</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>array, size_t arraySize, <span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>getNextValue)(<span style="color:#66d9ef">void</span>))
+{
+    <span style="color:#66d9ef">for</span> (size_t i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>arraySize; i<span style="color:#f92672">++</span>)
+        array[i] <span style="color:#f92672">=</span> getNextValue();
+}
+
+<span style="color:#75715e">// 获取随机值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getNextRandomValue</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">return</span> rand();
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">int</span> myarray[<span style="color:#ae81ff">10</span>];
+    populate_array(myarray, <span style="color:#ae81ff">10</span>, getNextRandomValue);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>) {
+        printf(<span style="color:#e6db74">&#34;%d &#34;</span>, myarray[i]);
+    }
+    printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="十七c字符串">十七、C字符串</h2>
+<p>在 C 语言中，字符串实际上是使用 null 字符 &lsquo;\0&rsquo; 终止的一维字符数组。因此，一个以 null 结尾的字符串，包含了组成字符串的字符。<br>
+下面的声明和初始化创建了一个 &ldquo;Hello&rdquo; 字符串。由于在数组的末尾存储了空字符，所以字符数组的大小比单词 &ldquo;Hello&rdquo; 的字符数多一个。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span> greeting[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;H&#39;</span>, <span style="color:#e6db74">&#39;e&#39;</span>, <span style="color:#e6db74">&#39;l&#39;</span>, <span style="color:#e6db74">&#39;l&#39;</span>, <span style="color:#e6db74">&#39;o&#39;</span>, <span style="color:#e6db74">&#39;\0&#39;</span>};
+</code></pre></div><p>依据数组初始化规则，您可以把上面的语句写成以下语句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span> greeting[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello&#34;</span>;
+</code></pre></div><p>C 中有大量操作字符串的函数：
+|函数|目的|
+|&mdash;-|&mdash;|
+|strcpy(s1, s2);|复制字符串 s2 到字符串 s1。|
+|strcat(s1, s2);|连接字符串 s2 到字符串 s1 的末尾。|
+|strlen(s1);|返回字符串 s1 的长度。|
+|strcmp(s1, s2);|如果 s1 和 s2 是相同的，则返回 0；如果 s1&lt;s2 则返回小于 0；如果 s1&gt;s2 则返回大于 0。|
+|strchr(s1, ch);|返回一个指针，指向字符串 s1 中字符 ch 的第一次出现的位置。|
+|strstr(s1, s2);|返回一个指针，指向字符串 s1 中字符串 s2 的第一次出现的位置。|</p>
+<h2 id="十八c结构体">十八、C结构体</h2>
+<p>结构是 C 编程中另一种用户自定义的可用的数据类型，它允许存储不同类型的数据项。</p>
+<h3 id="定义结构">定义结构</h3>
+<p>为了定义结构，您必须使用 struct 语句。struct 语句定义了一个包含多个成员的新的数据类型，struct 语句的格式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> tag {
+    member<span style="color:#f92672">-</span>list
+    member<span style="color:#f92672">-</span>list
+    member<span style="color:#f92672">-</span>list  
+    ...
+} variable<span style="color:#f92672">-</span>list ;
+</code></pre></div><p>tag 是结构体标签。<br>
+member-list 是标准的变量定义，比如 int i; 或者 float f，或者其他有效的变量定义。<br>
+variable-list 结构变量，定义在结构的末尾，最后一个分号之前，您可以指定一个或多个结构变量。下面是声明 Book 结构的方式：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> Books
+{
+   <span style="color:#66d9ef">char</span>  title[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  author[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  subject[<span style="color:#ae81ff">100</span>];
+   <span style="color:#66d9ef">int</span>   book_id;
+} book;
+</code></pre></div><p>在一般情况下，tag、member-list、variable-list 这 3 部分至少要出现 2 个。
+结构体的成员可以包含其他结构体，也可以包含指向自己结构体类型的指针，而通常这种指针的应用是为了实现一些更高级的数据结构如链表和树等。</p>
+<h3 id="结构体变量的初始化">结构体变量的初始化</h3>
+<p>和其它类型变量一样，对结构体变量可以在定义时指定初始值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">struct</span> Books
+{
+   <span style="color:#66d9ef">char</span>  title[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  author[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  subject[<span style="color:#ae81ff">100</span>];
+   <span style="color:#66d9ef">int</span>   book_id;
+} book <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;C 语言&#34;</span>, <span style="color:#e6db74">&#34;RUNOOB&#34;</span>, <span style="color:#e6db74">&#34;编程语言&#34;</span>, <span style="color:#ae81ff">123456</span>};
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    printf(<span style="color:#e6db74">&#34;title : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">author: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">subject: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">book_id: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, book.title, book.author, book.subject, book.book_id);
+}
+</code></pre></div><h3 id="访问结构成员">访问结构成员</h3>
+<p>为了访问结构的成员，我们使用成员访问运算符（.）。成员访问运算符是结构变量名称和我们要访问的结构成员之间的一个句号。您可以使用 struct 关键字来定义结构类型的变量。下面的实例演示了结构的用法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">struct</span> Books
+{
+   <span style="color:#66d9ef">char</span>  title[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  author[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  subject[<span style="color:#ae81ff">100</span>];
+   <span style="color:#66d9ef">int</span>   book_id;
+};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>( )
+{
+   <span style="color:#66d9ef">struct</span> Books Book1;        <span style="color:#75715e">/* 声明 Book1，类型为 Books */</span>
+   <span style="color:#66d9ef">struct</span> Books Book2;        <span style="color:#75715e">/* 声明 Book2，类型为 Books */</span>
+
+   <span style="color:#75715e">/* Book1 详述 */</span>
+   strcpy( Book1.title, <span style="color:#e6db74">&#34;C Programming&#34;</span>);
+   strcpy( Book1.author, <span style="color:#e6db74">&#34;Nuha Ali&#34;</span>); 
+   strcpy( Book1.subject, <span style="color:#e6db74">&#34;C Programming Tutorial&#34;</span>);
+   Book1.book_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">6495407</span>;
+
+   <span style="color:#75715e">/* Book2 详述 */</span>
+   strcpy( Book2.title, <span style="color:#e6db74">&#34;Telecom Billing&#34;</span>);
+   strcpy( Book2.author, <span style="color:#e6db74">&#34;Zara Ali&#34;</span>);
+   strcpy( Book2.subject, <span style="color:#e6db74">&#34;Telecom Billing Tutorial&#34;</span>);
+   Book2.book_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">6495700</span>;
+
+   <span style="color:#75715e">/* 输出 Book1 信息 */</span>
+   printf( <span style="color:#e6db74">&#34;Book 1 title : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book1.title);
+   printf( <span style="color:#e6db74">&#34;Book 1 author : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book1.author);
+   printf( <span style="color:#e6db74">&#34;Book 1 subject : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book1.subject);
+   printf( <span style="color:#e6db74">&#34;Book 1 book_id : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book1.book_id);
+
+   <span style="color:#75715e">/* 输出 Book2 信息 */</span>
+   printf( <span style="color:#e6db74">&#34;Book 2 title : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book2.title);
+   printf( <span style="color:#e6db74">&#34;Book 2 author : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book2.author);
+   printf( <span style="color:#e6db74">&#34;Book 2 subject : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book2.subject);
+   printf( <span style="color:#e6db74">&#34;Book 2 book_id : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Book2.book_id);
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p><strong>指向结构的指针</strong><br>
+您可以定义指向结构的指针，方式与定义指向其他类型变量的指针相似，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> Books <span style="color:#f92672">*</span>struct_pointer;
+</code></pre></div><p>现在，您可以在上述定义的指针变量中存储结构变量的地址。为了查找结构变量的地址，请把 &amp; 运算符放在结构名称的前面，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">struct_pointer <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>Book1;
+</code></pre></div><p>为了使用指向该结构的指针访问结构的成员，您必须使用 -&gt; 运算符，如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">struct_pointer<span style="color:#f92672">-&gt;</span>title;
+</code></pre></div><p><strong>位域</strong><br>
+有些信息在存储时，并不需要占用一个完整的字节，而只需占几个或一个二进制位。例如在存放一个开关量时，只有 0 和 1 两种状态，用 1 位二进位即可。为了节省存储空间，并使处理简便，C 语言又提供了一种数据结构，称为&quot;位域&quot;或&quot;位段&rdquo;。<br>
+所谓&quot;位域&quot;是把一个字节中的二进位划分为几个不同的区域，并说明每个区域的位数。每个域有一个域名，允许在程序中按域名进行操作。这样就可以把几个不同的对象用一个字节的二进制位域来表示。
+典型的实例：</p>
+<ul>
+<li>用 1 位二进位存放一个开关量时，只有 0 和 1 两种状态。</li>
+<li>读取外部文件格式——可以读取非标准的文件格式。例如：9 位的整数。</li>
+</ul>
+<h3 id="位域的定义和位域变量的说明">位域的定义和位域变量的说明</h3>
+<p>位域定义与结构定义相仿，其形式为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">位域结构名</span> 
+{
+
+ <span style="color:#960050;background-color:#1e0010">位域列表</span>
+
+};
+</code></pre></div><p>其中位域列表的形式为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#960050;background-color:#1e0010">类型说明符</span> <span style="color:#960050;background-color:#1e0010">位域名</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">位域长度</span> 
+</code></pre></div><p>例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> bs{
+    <span style="color:#66d9ef">int</span> a:<span style="color:#ae81ff">8</span>;
+    <span style="color:#66d9ef">int</span> b:<span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">int</span> c:<span style="color:#ae81ff">6</span>;
+}data;
+</code></pre></div><p>说明 data 为 bs 变量，共占两个字节。其中位域 a 占 8 位，位域 b 占 2 位，位域 c 占 6 位。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> packed_struct {
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> f1:<span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> f2:<span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> f3:<span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> f4:<span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> type:<span style="color:#ae81ff">4</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> my_int:<span style="color:#ae81ff">9</span>;
+} pack;
+</code></pre></div><p>在这里，packed_struct 包含了 6 个成员：四个 1 位的标识符 f1..f4、一个 4 位的 type 和一个 9 位的 my_int。<br>
+对于位域的定义尚有以下几点说明：</p>
+<ul>
+<li>一个位域存储在同一个字节中，如一个字节所剩空间不够存放另一位域时，则会从下一单元起存放该位域。也可以有意使某位域从下一单元开始。例如：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> bs{
+    <span style="color:#66d9ef">unsigned</span> a:<span style="color:#ae81ff">4</span>;
+    <span style="color:#66d9ef">unsigned</span>  <span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>;    <span style="color:#75715e">/* 空域 */</span>
+    <span style="color:#66d9ef">unsigned</span> b:<span style="color:#ae81ff">4</span>;    <span style="color:#75715e">/* 从下一单元开始存放 */</span>
+    <span style="color:#66d9ef">unsigned</span> c:<span style="color:#ae81ff">4</span>
+}
+</code></pre></div><p>在这个位域定义中，a 占第一字节的 4 位，后 4 位填 0 表示不使用，b 从第二字节开始，占用 4 位，c 占用 4 位。<br>
+由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是说不能超过8位二进位。如果最大长度大于计算机的整数字长，一些编译器可能会允许域的内存重叠，另外一些编译器可能会把大于一个域的部分存储在下一个字中。<br>
+位域可以是无名位域，这时它只用来作填充或调整位置。无名的位域是不能使用的。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> k{
+    <span style="color:#66d9ef">int</span> a:<span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">int</span>  <span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>;    <span style="color:#75715e">/* 该 2 位不能使用 */</span>
+    <span style="color:#66d9ef">int</span> b:<span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">int</span> c:<span style="color:#ae81ff">2</span>;
+};
+</code></pre></div><p>从以上分析可以看出，位域在本质上就是一种结构类型，不过其成员是按二进位分配的。</p>
+<h3 id="位域的使用">位域的使用</h3>
+<p>位域的使用和结构成员的使用相同，其一般形式为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#960050;background-color:#1e0010">位域变量名</span>.<span style="color:#960050;background-color:#1e0010">位域名</span>
+<span style="color:#960050;background-color:#1e0010">位域变量名</span><span style="color:#f92672">-&gt;</span><span style="color:#960050;background-color:#1e0010">位域名</span>
+</code></pre></div><p>位域允许用各种格式输出。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">main(){
+    <span style="color:#66d9ef">struct</span> bs{
+        <span style="color:#66d9ef">unsigned</span> a:<span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">unsigned</span> b:<span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">unsigned</span> c:<span style="color:#ae81ff">4</span>;
+    } bit,<span style="color:#f92672">*</span>pbit;
+    bit.a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;    <span style="color:#75715e">/* 给位域赋值（应注意赋值不能超过该位域的允许范围） */</span>
+    bit.b<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>;    <span style="color:#75715e">/* 给位域赋值（应注意赋值不能超过该位域的允许范围） */</span>
+    bit.c<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>;    <span style="color:#75715e">/* 给位域赋值（应注意赋值不能超过该位域的允许范围） */</span>
+    printf(<span style="color:#e6db74">&#34;%d,%d,%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,bit.a,bit.b,bit.c);    <span style="color:#75715e">/* 以整型量格式输出三个域的内容 */</span>
+    pbit<span style="color:#f92672">=&amp;</span>bit;    <span style="color:#75715e">/* 把位域变量 bit 的地址送给指针变量 pbit */</span>
+    pbit<span style="color:#f92672">-&gt;</span>a<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;    <span style="color:#75715e">/* 用指针方式给位域 a 重新赋值，赋为 0 */</span>
+    pbit<span style="color:#f92672">-&gt;</span>b<span style="color:#f92672">&amp;=</span><span style="color:#ae81ff">3</span>;    <span style="color:#75715e">/* 使用了复合的位运算符 &#34;&amp;=&#34;，相当于：pbit-&gt;b=pbit-&gt;b&amp;3，位域 b 中原有值为 7，与 3 作按位与运算的结果为 3（111&amp;011=011，十进制值为 3） */</span>
+    pbit<span style="color:#f92672">-&gt;</span>c<span style="color:#f92672">|=</span><span style="color:#ae81ff">1</span>;    <span style="color:#75715e">/* 使用了复合位运算符&#34;|=&#34;，相当于：pbit-&gt;c=pbit-&gt;c|1，其结果为 15 */</span>
+    printf(<span style="color:#e6db74">&#34;%d,%d,%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,pbit<span style="color:#f92672">-&gt;</span>a,pbit<span style="color:#f92672">-&gt;</span>b,pbit<span style="color:#f92672">-&gt;</span>c);    <span style="color:#75715e">/* 用指针方式输出了这三个域的值 */</span>
+}
+</code></pre></div><p>上例程序中定义了位域结构 bs，三个位域为 a、b、c。说明了 bs 类型的变量 bit 和指向 bs 类型的指针变量 pbit。这表示位域也是可以使用指针的。</p>
+<p>学习内容来自 <a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a></p></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="/tags/c" title="C">C</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/psb25.jpg">
+      
+    </div>
+
+    <h3 class="ui header">zhitaoZ&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">No one is a island</div>
+    </h3>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="/tags/c" title="c">c</a>
+    
+      <a class="ui label" href="/tags/git" title="git">git</a>
+    
+      <a class="ui label" href="/tags/%E7%BD%91%E7%AB%99" title="网站">网站</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="/categories/%E8%87%AA%E5%AD%A6" class="item">自学</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc3/" class="item">C语言基础知识(三)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc2/" class="item">C语言基础知识(二)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc1/" class="item">C语言基础知识(一)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/bblog/" class="item">hugo搭建博客步骤(windows)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui bottom attached center aligned segment">
+      
+      <p>© 2020 zhitaoZ&#39;s blog</p>
+      
+      <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu">
+          
+            <div class="item">
+              <a href="mailto:zhangzhitao@bupt.edu.cn">
+                <i class="large mail icon" title="email"></i>
+              </a>
+            </div>
+          
+
+          
+            <div class="item">
+              <a href="https://github.com/zhitaoZ" target="_blank">
+                <i class="large github icon" title="github"></i>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+        </nav>
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+
+
+
+  </body>
+</html>
