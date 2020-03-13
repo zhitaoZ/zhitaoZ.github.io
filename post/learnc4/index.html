@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+C语言基础知识(三)
+</title>
+
+    
+
+
+  
+  <meta name="author" content="zhitaoZ" />
+  <meta name="description" content="No one is a island" />
+
+
+
+<meta name="generator" content="Hugo 0.65.3" />
+
+<link rel="canonical" href="https://zhitaoZ.github.io/post/learnc4/" />
+
+
+<meta property="og:title" content="C语言基础知识(三)" />
+<meta property="og:description" content="C语言基础知识 (四)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhitaoZ.github.io/post/learnc4/" />
+<meta property="article:published_time" content="2020-03-12T20:59:04+08:00" />
+<meta property="article:modified_time" content="2020-03-13T10:30:45+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C语言基础知识(三)"/>
+<meta name="twitter:description" content="C语言基础知识 (四)"/>
+
+
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background-image: url(/me/background.jpg);">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          C语言基础知识(三)
+          <div class="sub header">@ zhitaoZ · Thursday, Mar 12, 2020 · 4 minute read · Update at Mar 13, 2020</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;"><p>C语言基础知识 (四)</p>
+<h2 id="十九c共用体">十九、C共用体</h2>
+<p>共用体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。可以定义一个带有多成员的共用体，但是任何时候只能有一个成员带有值。共用体提供了一种使用相同的内存位置的有效方式。</p>
+<h3 id="定义共用体">定义共用体</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">union</span> [<span style="color:#66d9ef">union</span> tag]         <span style="color:#75715e">// union tag 是可选的
+</span><span style="color:#75715e"></span>{
+   member definition;    <span style="color:#75715e">//每个 member definition 是标准的变量定义
+</span><span style="color:#75715e"></span>   member definition;
+   ...
+   member definition;
+} [one or more <span style="color:#66d9ef">union</span> variables];  <span style="color:#75715e">//在共用体定义的末尾，最后一个分号之前，您可以指定一个或多个共用体变量，这是可选的。
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">union</span> Data
+{
+   <span style="color:#66d9ef">int</span> i;
+   <span style="color:#66d9ef">float</span> f;
+   <span style="color:#66d9ef">char</span>  str[<span style="color:#ae81ff">20</span>];
+};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>( )
+{
+   <span style="color:#66d9ef">union</span> Data data;
+
+   printf( <span style="color:#e6db74">&#34;Memory size occupied by data : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#66d9ef">sizeof</span>(data));
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>共用体占用的内存应足够存储共用体中最大的成员。</p>
+<h3 id="访问共用体成员">访问共用体成员</h3>
+<p>为了访问共用体的成员，我们使用成员访问运算符（.）。成员访问运算符是共用体变量名称和我们要访问的共用体成员之间的一个句号。可以使用 union 关键字来定义共用体类型的变量。</p>
+<p>不能同时对成员进行操作，每次只能使用一个。</p>
+<h2 id="二十c位域">二十、C位域</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* 定义简单的结构 */</span>
+<span style="color:#66d9ef">struct</span>
+{
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> widthValidated;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> heightValidated;
+} status1;
+
+<span style="color:#75715e">/* 定义位域结构 */</span>
+<span style="color:#66d9ef">struct</span>
+{
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> widthValidated : <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> heightValidated : <span style="color:#ae81ff">1</span>;
+} status2;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>( )
+{
+   printf( <span style="color:#e6db74">&#34;Memory size occupied by status1 : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#66d9ef">sizeof</span>(status1));
+   printf( <span style="color:#e6db74">&#34;Memory size occupied by status2 : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#66d9ef">sizeof</span>(status2));
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="位域声明">位域声明</h3>
+<p>在结构内声明位域的形式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span>
+{
+  type [member_name] <span style="color:#f92672">:</span> width ;
+};
+</code></pre></div><p>下面是有关位域中变量元素的描述：
+|元素|描述|
+|&mdash;-|&mdash;|
+|type|只能为 int(整型)，unsigned int(无符号整型)，signed int(有符号整型) 三种类型，决定了如何解释位域的值。|
+|member_name|位域的名称。|
+|width|位域中位的数量。宽度必须小于或等于指定类型的位宽度。|</p>
+<h2 id="二十一-ctypedef">二十一、 Ctypedef</h2>
+<p>C 语言提供了 typedef 关键字，可以使用它来为类型取一个新的名字。下面的实例为单字节数字定义了一个术语 BYTE：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> BYTE;
+</code></pre></div><p>在这个类型定义之后，标识符 BYTE 可作为类型 unsigned char 的缩写，例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">BYTE  b1, b2;
+</code></pre></div><p>按照惯例，定义时会大写字母，以便提醒用户类型名称是一个象征性的缩写。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> Books
+{
+   <span style="color:#66d9ef">char</span>  title[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  author[<span style="color:#ae81ff">50</span>];
+   <span style="color:#66d9ef">char</span>  subject[<span style="color:#ae81ff">100</span>];
+   <span style="color:#66d9ef">int</span>   book_id;
+} Book;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>( )
+{
+   Book book;
+
+   strcpy( book.title, <span style="color:#e6db74">&#34;C 教程&#34;</span>);
+   strcpy( book.author, <span style="color:#e6db74">&#34;Runoob&#34;</span>); 
+   strcpy( book.subject, <span style="color:#e6db74">&#34;编程语言&#34;</span>);
+   book.book_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">12345</span>;
+
+   printf( <span style="color:#e6db74">&#34;书标题 : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, book.title);
+   printf( <span style="color:#e6db74">&#34;书作者 : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, book.author);
+   printf( <span style="color:#e6db74">&#34;书类目 : %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, book.subject);
+   printf( <span style="color:#e6db74">&#34;书 ID : %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, book.book_id);
+
+   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="typedef-vs-define">typedef vs #define</h3>
+<p>#define 是 C 指令，用于为各种数据类型定义别名，与 typedef 类似，但是它们有以下几点不同：</p>
+<ul>
+<li>typedef 仅限于为类型定义符号名称，#define 不仅可以为类型定义别名，也能为数值定义别名，比如您可以定义 1 为 ONE。</li>
+<li>typedef 是由编译器执行解释的，#define 语句是由预编译器进行处理的。</li>
+</ul>
+<h2 id="二十二c输入输出">二十二、C输入&amp;输出</h2>
+<p>当我们提到<strong>输入</strong>时，这意味着要向程序填充一些数据。输入可以是以文件的形式或从命令行中进行。C 语言提供了一系列内置的函数来读取给定的输入，并根据需要填充到程序中。<br>
+当我们提到<strong>输出</strong>时，这意味着要在屏幕上、打印机上或任意文件中显示一些数据。C 语言提供了一系列内置的函数来输出数据到计算机屏幕上和保存数据到文本文件或二进制文件中。</p>
+<h2 id="标准文件">标准文件</h2>
+<p>C 语言把所有的设备都当作文件。所以设备（比如显示器）被处理的方式与文件相同。以下三个文件会在程序执行时自动打开，以便访问键盘和屏幕。</p>
+<table>
+<thead>
+<tr>
+<th>标准文件</th>
+<th>文件指针</th>
+<th>设备</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准输入</td>
+<td>stdin</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td>标准输出</td>
+<td>stdout</td>
+<td>屏幕</td>
+</tr>
+<tr>
+<td>标准错误</td>
+<td>stderr</td>
+<td>您的屏幕</td>
+</tr>
+</tbody>
+</table>
+<p>文件指针是访问文件的方式。<br>
+C 语言中的 I/O (输入/输出) 通常使用 printf() 和 scanf() 两个函数。<br>
+scanf() 函数用于从标准输入（键盘）读取并格式化， printf() 函数发送格式化输出到标准输出（屏幕）。</p>
+<h3 id="getchar--putchar-函数">getchar() &amp; putchar() 函数</h3>
+<p><em>int getchar(void)</em> 函数从屏幕读取下一个可用的字符，并把它返回为一个整数。这个函数在同一个时间内只会读取一个单一的字符。您可以在循环内使用这个方法，以便从屏幕上读取多个字符。<br>
+<em>int putchar(int c)</em> 函数把字符输出到屏幕上，并返回相同的字符。这个函数在同一个时间内只会输出一个单一的字符。您可以在循环内使用这个方法，以便在屏幕上输出多个字符。</p>
+<h3 id="gets--puts-函数">gets() &amp; puts() 函数</h3>
+<p>*char *gets(char <em>s)</em> 函数从 stdin 读取一行到 s 所指向的缓冲区，直到一个终止符或 EOF。<br>
+*int puts(const char <em>s)</em> 函数把字符串 s 和一个尾随的换行符写入到 stdout。</p>
+<h3 id="scanf-和-printf-函数">scanf() 和 printf() 函数</h3>
+<p>*int scanf(const char <em>format, &hellip;)</em> 函数从标准输入流 stdin 读取输入，并根据提供的 format 来浏览输入。<br>
+*int printf(const char <em>format, &hellip;)</em> 函数把输出写入到标准输出流 stdout ，并根据提供的格式产生输出。<br>
+format 可以是一个简单的常量字符串，但是您可以分别指定 %s、%d、%c、%f 等来输出或读取字符串、整数、字符或浮点数。还有许多其他可用的格式选项，可以根据需要使用。如需了解完整的细节，可以查看这些函数的参考手册。</p>
+<h2 id="二十三c文件读写">二十三、C文件读写</h2>
+<p>一个文件，无论它是文本文件还是二进制文件，都是代表了一系列的字节。C 语言不仅提供了访问顶层的函数，也提供了底层（OS）调用来处理存储设备上的文件。</p>
+<h3 id="打开文件">打开文件</h3>
+<p>可以使用 fopen( ) 函数来创建一个新的文件或者打开一个已有的文件，这个调用会初始化类型 FILE 的一个对象，类型 FILE 包含了所有用来控制流的必要的信息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">FILE <span style="color:#f92672">*</span><span style="color:#a6e22e">fopen</span>( <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> filename, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> mode );
+</code></pre></div><p>在这里，filename 是字符串，用来命名文件，访问模式 mode 的值可以是下列值中的一个：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>打开一个已有的文本文件，允许读取文件。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开一个文本文件，允许写入文件。如果文件不存在，则会创建一个新文件。在这里，您的程序会从文件的开头写入内容。如果文件存在，则该会被截断为零长度，重新写入。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开一个文本文件，以追加模式写入文件。如果文件不存在，则会创建一个新文件。在这里，您的程序会在已有的文件内容中追加内容。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开一个文本文件，允许读写文件。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开一个文本文件，允许读写文件。如果文件已存在，则文件会被截断为零长度，如果文件不存在，则会创建一个新文件。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开一个文本文件，允许读写文件。如果文件不存在，则会创建一个新文件。读取会从文件的开头开始，写入则只能是追加模式。</td>
+</tr>
+<tr>
+<td>如果处理的是二进制文件，则需使用下面的访问模式来取代上面的访问模式：</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#e6db74">&#34;rb&#34;</span>, <span style="color:#e6db74">&#34;wb&#34;</span>, <span style="color:#e6db74">&#34;ab&#34;</span>, <span style="color:#e6db74">&#34;rb+&#34;</span>, <span style="color:#e6db74">&#34;r+b&#34;</span>, <span style="color:#e6db74">&#34;wb+&#34;</span>, <span style="color:#e6db74">&#34;w+b&#34;</span>, <span style="color:#e6db74">&#34;ab+&#34;</span>, <span style="color:#e6db74">&#34;a+b&#34;</span>
+</code></pre></div><h3 id="关闭文件">关闭文件</h3>
+<p>为了关闭文件，请使用 fclose( ) 函数。函数的原型如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fclose</span>( FILE <span style="color:#f92672">*</span>fp );
+</code></pre></div><p>如果成功关闭文件，fclose( ) 函数返回零，如果关闭文件时发生错误，函数返回 EOF。这个函数实际上，会清空缓冲区中的数据，关闭文件，并释放用于该文件的所有内存。EOF 是一个定义在头文件 stdio.h 中的常量。</p>
+<h3 id="写入文件">写入文件</h3>
+<p>下面是把字符写入到流中的最简单的函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fputc</span>( <span style="color:#66d9ef">int</span> c, FILE <span style="color:#f92672">*</span>fp );
+</code></pre></div><p>函数 <strong>fputc()</strong> 把参数 c 的字符值写入到 fp 所指向的输出流中。如果写入成功，它会返回写入的字符，如果发生错误，则会返回 EOF。您可以使用下面的函数来把一个以 null 结尾的字符串写入到流中：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fputs</span>( <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s, FILE <span style="color:#f92672">*</span>fp );
+</code></pre></div><p>函数* fputs()* 把字符串 s 写入到 fp 所指向的输出流中。如果写入成功，它会返回一个非负值，如果发生错误，则会返回 EOF。您也可以使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fprintf</span>(FILE <span style="color:#f92672">*</span>fp,<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...) ;
+</code></pre></div><p>函数来写把一个字符串写入到文件中。</p>
+<h3 id="读取文件">读取文件</h3>
+<p>下面是从文件读取单个字符的最简单的函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fgetc</span>( FILE <span style="color:#f92672">*</span> fp );
+</code></pre></div><p><em>fgetc()</em> 函数从 fp 所指向的输入文件中读取一个字符。返回值是读取的字符，如果发生错误则返回 EOF。下面的函数允许您从流中读取一个字符串：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">fgets</span>( <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">int</span> n, FILE <span style="color:#f92672">*</span>fp );
+</code></pre></div><p>函数* fgets() *从 fp 所指向的输入流中读取 n - 1 个字符。它会把读取的字符串复制到缓冲区 buf，并在最后追加一个 null 字符来终止字符串。<br>
+如果这个函数在读取最后一个字符之前就遇到一个换行符 &lsquo;\n&rsquo; 或文件的末尾 EOF，则只会返回读取到的字符，包括换行符。
+可以使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fscanf</span>(FILE <span style="color:#f92672">*</span>fp, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...);
+</code></pre></div><p>函数来从文件中读取字符串，但是在遇到第一个空格和换行符时，它会停止读取。</p>
+<h3 id="二进制-io-函数">二进制 I/O 函数</h3>
+<p>下面两个函数用于二进制输入和输出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">size_t <span style="color:#a6e22e">fread</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr, size_t size_of_elements, 
+             size_t number_of_elements, FILE <span style="color:#f92672">*</span>a_file);
+size_t <span style="color:#a6e22e">fwrite</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr, size_t size_of_elements,
+             size_t number_of_elements, FILE <span style="color:#f92672">*</span>a_file);
+</code></pre></div><p>这两个函数都是用于存储块的读写 - 通常是数组或结构体。</p>
+<h2 id="二十四-c预处理器">二十四、 C预处理器</h2>
+<p>C 预处理器不是编译器的组成部分，但是它是编译过程中一个单独的步骤。简言之，C 预处理器只不过是一个文本替换工具而已，它们会指示编译器在实际编译之前完成所需的预处理。我们将把 C 预处理器（C Preprocessor）简写为 CPP。<br>
+所有的预处理器命令都是以井号（#）开头。它必须是第一个非空字符，为了增强可读性，预处理器指令应从第一列开始。下面列出了所有重要的预处理器指令：<br>
+|指令|描述|
+|&ndash;|&ndash;|
+|#define|定义宏|
+|#include|包含一个源代码文件|
+|#undef|取消已定义的宏|
+|#ifdef|如果宏已经定义，则返回真|
+|#ifndef|如果宏没有定义，则返回真|
+|#if|如果给定条件为真，则编译下面代码|
+|#else|#if 的替代方案|
+|#elif|如果前面的 #if 给定条件不为真，当前条件为真，则编译下面代码|
+|#endif|结束一个 #if……#else 条件编译块|
+|#error|当遇到标准错误时，输出错误消息|
+|#pragma|使用标准化方法，向编译器发布特殊的命令到编译器中|</p>
+<h3 id="预定义宏">预定义宏</h3>
+<p>ANSI C 定义了许多宏。在编程中可以使用这些宏，但是不能直接修改这些预定义的宏。</p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>__DATE__</td>
+<td>当前日期，一个以 &ldquo;MMM DD YYYY&rdquo; 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td>__TIME__</td>
+<td>当前时间，一个以 &ldquo;HH:MM:SS&rdquo; 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td>__FILE__</td>
+<td>这会包含当前文件名，一个字符串常量。</td>
+</tr>
+<tr>
+<td>__LINE__</td>
+<td>这会包含当前行号，一个十进制常量。</td>
+</tr>
+<tr>
+<td>__STDC__</td>
+<td>当编译器以 ANSI 标准编译时，则定义为 1。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="预处理器运算符">预处理器运算符</h3>
+<table>
+<thead>
+<tr>
+<th>符号名称</th>
+<th>符号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>宏延续运算符</td>
+<td>\</td>
+<td>一个宏通常写在一个单行上。但是如果宏太长，一个单行容纳不下，则使用宏延续运算符（\）</td>
+</tr>
+<tr>
+<td>字符串常量化运算符</td>
+<td>#</td>
+<td>在宏定义中，当需要把一个宏的参数转换为字符串常量时，则使用字符串常量化运算符（#）</td>
+</tr>
+<tr>
+<td>标记粘贴运算符</td>
+<td>##</td>
+<td>宏定义内的标记粘贴运算符（##）会合并两个参数。它允许在宏定义中两个独立的标记被合并为一个标记</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参数化的宏">参数化的宏</h3>
+<p>CPP 一个强大的功能是可以使用参数化的宏来模拟函数。例如，下面的代码是计算一个数的平方：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">square</span>(<span style="color:#66d9ef">int</span> x) {
+   <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> x;
+}
+</code></pre></div><p>我们可以使用宏重写上面的代码，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#define square(x) ((x) * (x));
+</span></code></pre></div><p>在使用带有参数的宏之前，必须使用 #define 指令定义。参数列表是括在圆括号内，且必须紧跟在宏名称的后边。宏名称和左圆括号之间不允许有空格。</p>
+<h2 id="二十五c-头文件">二十五、C 头文件</h2>
+<p>头文件是扩展名为 .h 的文件，包含了 C 函数声明和宏定义，被多个源文件中引用共享。有两种类型的头文件：程序员编写的头文件和编译器自带的头文件。<br>
+在程序中要使用头文件，需要使用 C 预处理指令 #include 来引用它。前面我们已经看过 stdio.h 头文件，它是编译器自带的头文件。<br>
+引用头文件相当于复制头文件的内容，但是我们不会直接在源文件中复制头文件的内容，因为这么做很容易出错，特别在程序是由多个源文件组成的时候。<br>
+A simple practice in C 或 C++ 程序中，建议把所有的常量、宏、系统全局变量和函数原型写在头文件中，在需要的时候随时引用这些头文件。</p>
+<p>###　引用头文件的语法</p>
+<p>使用预处理指令 #include 可以引用用户和系统头文件。它的形式有以下两种：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;file&gt;</span><span style="color:#75715e">
+</span></code></pre></div><p>这种形式用于引用系统头文件。它在系统目录的标准列表中搜索名为 file 的文件。在编译源代码时，您可以通过 -I 选项把目录前置在该列表前。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;file&#34;</span><span style="color:#75715e">
+</span></code></pre></div><p>这种形式用于引用用户头文件。它在包含当前文件的目录中搜索名为 file 的文件。在编译源代码时，您可以通过 -I 选项把目录前置在该列表前。</p>
+<h3 id="引用头文件的操作">引用头文件的操作</h3>
+<p>#include 指令会指示 C 预处理器浏览指定的文件作为输入。预处理器的输出包含了已经生成的输出，被引用文件生成的输出以及 #include 指令之后的文本输出。例如，如果您有一个头文件 header.h，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">test</span> (<span style="color:#66d9ef">void</span>);
+</code></pre></div><p>和一个使用了头文件的主程序 program.c，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> x;
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;header.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">void</span>)
+{
+   puts (test ());
+}
+</code></pre></div><p>编译器会看到如下的代码信息：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> x;
+<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">test</span> (<span style="color:#66d9ef">void</span>);
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> (<span style="color:#66d9ef">void</span>)
+{
+   puts (test ());
+}
+</code></pre></div><h3 id="只引用一次头文件">只引用一次头文件</h3>
+<p>如果一个头文件被引用两次，编译器会处理两次头文件的内容，这将产生错误。为了防止这种情况，标准的做法是把文件的整个内容放在条件编译语句中，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#ifndef HEADER_FILE
+</span><span style="color:#75715e">#define HEADER_FILE
+</span><span style="color:#75715e"></span>
+the entire header file file
+
+<span style="color:#75715e">#endif
+</span></code></pre></div><p>这种结构就是通常所说的包装器 #ifndef。当再次引用头文件时，条件为假，因为 HEADER_FILE 已定义。此时，预处理器会跳过文件的整个内容，编译器会忽略它。</p>
+<h3 id="有条件引用">有条件引用</h3>
+<p>有时需要从多个不同的头文件中选择一个引用到程序中。例如，需要指定在不同的操作系统上使用的配置参数。您可以通过一系列条件来实现这点，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#if SYSTEM_1
+</span><span style="color:#75715e"></span>   <span style="color:#75715e"># include &#34;system_1.h&#34;
+</span><span style="color:#75715e">#elif SYSTEM_2
+</span><span style="color:#75715e"></span>   <span style="color:#75715e"># include &#34;system__2.h&#34;
+</span><span style="color:#75715e">#elif SYSTEM_3
+</span><span style="color:#75715e"></span>   ...
+<span style="color:#75715e">#endif
+</span></code></pre></div><p>但是如果头文件比较多的时候，这么做是很不妥当的，预处理器使用宏来定义头文件的名称。这就是所谓的<em>有条件引用</em>。它不是用头文件的名称作为 #include 的直接参数，您只需要使用宏名称代替即可：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"> <span style="color:#75715e">#define SYSTEM_H &#34;system_1.h&#34;
+</span><span style="color:#75715e"></span> ...
+ <span style="color:#75715e">#include</span> <span style="color:#75715e">SYSTEM_H</span><span style="color:#75715e">
+</span></code></pre></div><p>SYSTEM_H 会扩展，预处理器会查找 system_1.h，就像 #include 最初编写的那样。SYSTEM_H 可通过 -D 选项被您的 Makefile 定义。</p>
+<p>学习内容来自 <a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a></p></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="/tags/c" title="C">C</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/psb25.jpg">
+      
+    </div>
+
+    <h3 class="ui header">zhitaoZ&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">No one is a island</div>
+    </h3>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="/tags/c" title="c">c</a>
+    
+      <a class="ui label" href="/tags/git" title="git">git</a>
+    
+      <a class="ui label" href="/tags/%E7%BD%91%E7%AB%99" title="网站">网站</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="/categories/%E8%87%AA%E5%AD%A6" class="item">自学</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc4/" class="item">C语言基础知识(三)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc3/" class="item">C语言基础知识(三)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc2/" class="item">C语言基础知识(二)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/learnc1/" class="item">C语言基础知识(一)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoZ.github.io/post/bblog/" class="item">hugo搭建博客步骤(windows)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui bottom attached center aligned segment">
+      
+      <p>© 2020 zhitaoZ&#39;s blog</p>
+      
+      <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoZ.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu">
+          
+            <div class="item">
+              <a href="mailto:zhangzhitao@bupt.edu.cn">
+                <i class="large mail icon" title="email"></i>
+              </a>
+            </div>
+          
+
+          
+            <div class="item">
+              <a href="https://github.com/zhitaoZ" target="_blank">
+                <i class="large github icon" title="github"></i>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+        </nav>
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+
+
+
+  </body>
+</html>
