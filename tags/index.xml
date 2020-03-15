@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on zhitaoZ&#39;s blog</title>
-    <link>https://zhitaoZ.github.io/tags/</link>
+    <link>https://zhitaoz.github.io/tags/</link>
     <description>Recent content in Tags on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <lastBuildDate>Fri, 13 Mar 2020 14:29:13 +0800</lastBuildDate>
     
-	<atom:link href="https://zhitaoZ.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhitaoz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C</title>
-      <link>https://zhitaoZ.github.io/tags/c/</link>
+      <link>https://zhitaoz.github.io/tags/c/</link>
       <pubDate>Fri, 13 Mar 2020 14:29:13 +0800</pubDate>
       
-      <guid>https://zhitaoZ.github.io/tags/c/</guid>
+      <guid>https://zhitaoz.github.io/tags/c/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://zhitaoZ.github.io/tags/git/</link>
+      <link>https://zhitaoz.github.io/tags/git/</link>
       <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
       
-      <guid>https://zhitaoZ.github.io/tags/git/</guid>
+      <guid>https://zhitaoz.github.io/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网站</title>
-      <link>https://zhitaoZ.github.io/tags/%E7%BD%91%E7%AB%99/</link>
+      <link>https://zhitaoz.github.io/tags/%E7%BD%91%E7%AB%99/</link>
       <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
       
-      <guid>https://zhitaoZ.github.io/tags/%E7%BD%91%E7%AB%99/</guid>
+      <guid>https://zhitaoz.github.io/tags/%E7%BD%91%E7%AB%99/</guid>
       <description></description>
     </item>
     
