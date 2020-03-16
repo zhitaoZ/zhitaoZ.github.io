@@ -6,10 +6,19 @@
     <description>Recent content in git on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Tue, 03 Mar 2020 11:26:31 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 08:28:26 +0800</lastBuildDate>
     
 	<atom:link href="https://zhitaoz.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git基本操作</title>
+      <link>https://zhitaoz.github.io/post/learngit1/</link>
+      <pubDate>Mon, 16 Mar 2020 08:28:26 +0800</pubDate>
+      
+      <guid>https://zhitaoz.github.io/post/learngit1/</guid>
+      <description>&lt;p&gt;Git基本操作&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>hugo搭建博客步骤(windows)</title>

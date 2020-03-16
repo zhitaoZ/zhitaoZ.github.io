@@ -6,10 +6,19 @@
     <description>Recent content in Tags on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 13 Mar 2020 14:29:13 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 08:28:26 +0800</lastBuildDate>
     
 	<atom:link href="https://zhitaoz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>git</title>
+      <link>https://zhitaoz.github.io/tags/git/</link>
+      <pubDate>Mon, 16 Mar 2020 08:28:26 +0800</pubDate>
+      
+      <guid>https://zhitaoz.github.io/tags/git/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C</title>
@@ -17,15 +26,6 @@
       <pubDate>Fri, 13 Mar 2020 14:29:13 +0800</pubDate>
       
       <guid>https://zhitaoz.github.io/tags/c/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://zhitaoz.github.io/tags/git/</link>
-      <pubDate>Tue, 03 Mar 2020 11:26:31 +0800</pubDate>
-      
-      <guid>https://zhitaoz.github.io/tags/git/</guid>
       <description></description>
     </item>
     
