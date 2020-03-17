@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>
-Git基本操作
+Git 尝试pull request&amp; 接收pull request
 </title>
 
     
@@ -19,21 +19,21 @@ Git基本操作
 
 <meta name="generator" content="Hugo 0.65.3" />
 
-<link rel="canonical" href="https://zhitaoz.github.io/post/learngit1/" />
+<link rel="canonical" href="https://zhitaoz.github.io/post/learngit3/" />
 
 
-<meta property="og:title" content="Git基本操作" />
-<meta property="og:description" content="Git基本操作" />
+<meta property="og:title" content="Git 尝试pull request&amp; 接收pull request" />
+<meta property="og:description" content="Git pull request相关操作" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhitaoz.github.io/post/learngit1/" />
-<meta property="article:published_time" content="2020-03-16T08:28:26+08:00" />
-<meta property="article:modified_time" content="2020-03-16T17:30:45+08:00" />
+<meta property="og:url" content="https://zhitaoz.github.io/post/learngit3/" />
+<meta property="article:published_time" content="2020-03-16T16:34:06+08:00" />
+<meta property="article:modified_time" content="2020-03-17T08:30:45+08:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Git基本操作"/>
-<meta name="twitter:description" content="Git基本操作"/>
+<meta name="twitter:title" content="Git 尝试pull request&amp; 接收pull request"/>
+<meta name="twitter:description" content="Git pull request相关操作"/>
 
 
 <link rel="stylesheet" href="/css/github-markdown.css" />
@@ -85,78 +85,48 @@ Git基本操作
     <section class="ui top attached segment" id="dream-save-post-as-img">
       <header style="margin-top: 0 !important;">
         <h2 class="ui header">
-          Git基本操作
-          <div class="sub header">@ zhitaoZ · Monday, Mar 16, 2020 · 1 minute read · Update at Mar 16, 2020</div>
+          Git 尝试pull request&amp; 接收pull request
+          <div class="sub header">@ zhitaoZ · Monday, Mar 16, 2020 · 1 minute read · Update at Mar 17, 2020</div>
         </h2>
       </header>
-      <article style="margin-top: 2rem;"><p>Git基本操作</p>
-<h2 id="常见git操作">常见Git操作</h2>
-<h3 id="git-init----初始化仓库">git init &mdash;初始化仓库</h3>
-<p>要使用 Git 进行版本管理，必须先初始化仓库。Git 是使用 git init命令进行初始化的。请实际建立一个目录并初始化仓库。<br>
-如果初始化成功，执行了 git init命令的目录下就会生成 .git 目录。这个 .git 目录里存储着管理当前目录内容所需的仓库数据。<br>
-在 Git 中，我们将这个目录的内容称为“附属于该仓库的工作树”。文件的编辑等操作在工作树中进行，然后记录到仓库中，以此管理文件的历史快照。如果想将文件恢复到原先的状态，可以从仓库中调取之前的快照，在工作树中打开。开发者可以通过这种方式获取以往的文件。</p>
-<h3 id="git-status----查看仓库状态">git status &mdash;查看仓库状态</h3>
-<p>工作树和仓库在被操作的过程中，状态会不断发生变化。在 Git 操作过程中时常用 git status命令查看当前状态。</p>
-<h3 id="git-add----向暂存区中添加文件">git add &mdash;向暂存区中添加文件</h3>
-<p>如果只是用 Git 仓库的工作树创建了文件，那么该文件并不会被记入 Git 仓库的版本管理对象当中。<br>
-要想让文件成为 Git 仓库的管理对象，就需要用 git add命令将其加入暂存区（Stage 或者 Index）中。暂存区是提交之前的一个临时区域。</p>
-<h3 id="git-commit---保存仓库的历史记录">git commit&mdash;保存仓库的历史记录</h3>
-<p>git commit命令可以将当前暂存区中的文件实际保存到仓库的历史记录中。通过这些记录，我们就可以在工作树中复原文件。</p>
-<h4 id="记述一行提交信息">记述一行提交信息</h4>
-<pre><code class="language-git" data-lang="git">git commit -m &quot;First commit&quot;
-</code></pre><p>-m 参数后的 &ldquo;First commit&quot;称作提交信息，是对这个提交的概述。</p>
-<h4 id="记述详细提交信息">记述详细提交信息</h4>
-<p>刚才我们只简洁地记述了一行提交信息，如果想要记述得更加详细，请不加 - m，直接执行 git commit 命令。执行后编辑器就会启动，并显示如下结果。</p>
-<pre><code class="language-git" data-lang="git"># Please enter the commit message for your changes. Lines starting
-# with '#' will be ignored, and an empty message aborts the commit.
-# On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
-#
-#       new file:   README.md
-</code></pre><p>在编辑器中记述提交信息的格式如下。</p>
-<ul>
+      <article style="margin-top: 2rem;"><p>Git pull request相关操作</p>
+<h2 id="尝试pull-request">尝试pull request</h2>
+<p>Pull Request 是自己修改源代码后，请求对方仓库采纳该修改时采取的一种行为(在网络上也常常被简称为 PR)。</p>
+<p>一般说来，在 GitHub 上修改对方的代码时，需要先将仓库 Fork 到本地，然后再修改代码，发送 Pull Request。但是，如果用户对该仓库有编辑权限，则可以直接创建分支，从分支发送 Pull Request。利用这一设计，团队开发时不妨为每一名成员赋予编辑权限，免去 Fork 仓库的麻烦。这样，成员在有需要时就可以创建自己的分支，然后直接向 master 分支等发送 Pull Request。</p>
+<p>发送pull request一般步骤：</p>
+<ol>
 <li>
-<p>第一行：用一行文字简述提交的更改内容</p>
+<p>fork 新建自己的仓库</p>
 </li>
 <li>
-<p>第二行：空行</p>
+<p>把新建的仓库clone 到当前开发环境</p>
 </li>
 <li>
-<p>第三行以后：记述更改的原因和详细内容</p>
+<p>新建特性分支，在新建的分支下修改</p>
 </li>
-</ul>
-<p>只要按照上面的格式输入，今后便可以通过确认日志的命令或工具看到这些记录。<br>
-在以 #（井号）标为注释的 Changes to be committed（要提交的更改）栏中，可以查看本次提交中包含的文件。将提交信息按格式记述完毕后，请保存并关闭编辑器，以 #（井号）标为注释的行不必删除。随后，刚才记述的提交信息就会被提交。</p>
-<h4 id="中止提交">中止提交</h4>
-<p>如果在编辑器启动后想中止提交，请将提交信息留空并直接关闭编辑器，随后提交就会被中止。</p>
-<h3 id="git-log----查看提交日志">git log &mdash;查看提交日志</h3>
-<p>git log命令可以查看以往仓库中提交的日志。包括可以查看什么人在什么时候进行了提交或合并，以及操作前后有怎样的差别。</p>
-<pre><code class="language-git" data-lang="git">$ git log
-
-commit 9f129bae19b2c82fb4e98cde5890e52a6c546922
-Author: hirocaster &lt;hohtsuka@gmail.com&gt;
-Date:   Sun May 5 16:06:49 2013 +0900
-
-    First commit
-</code></pre><p>commit 栏旁边显示的“9f129b……”是指向这个提交的哈希值。Git 的其他命令中，在指向提交时会用到这个哈希值。<br>
-Author 栏中显示我们给 Git 设置的用户名和邮箱地址。Date 栏中显示提交执行的日期和时间。再往下就是该提交的提交信息。</p>
-<h4 id="只显示提交信息的第一行">只显示提交信息的第一行</h4>
-<p>如果只想让程序显示第一行简述信息，可以在 git log命令后加上 &ndash;pretty=short。这样一来开发人员就能够更轻松地把握多个提交。</p>
-<h4 id="只显示指定目录文件的日志">只显示指定目录、文件的日志</h4>
-<p>只要在 git log命令后加上目录名，便会只显示该目录下的日志。如果加的是文件名，就会只显示与该文件相关的日志。</p>
-<h4 id="显示文件的改动">显示文件的改动</h4>
-<p>如果想查看提交所带来的改动，可以加上 - p参数，文件的前后差别就会显示在提交信息之后。<br>
-比如，执行下面的命令，就可以只查看 README.md 文件的提交日志以及提交前后的差别。</p>
-<pre><code class="language-git" data-lang="git"> git log -p README.md
-</code></pre><h3 id="git-diff查看更改前后的差别">git diff——查看更改前后的差别</h3>
-<p>git diff命令可以查看工作树、暂存区、最新提交之间的差别。</p>
-<p>未用 git add命令向暂存区添加任何东西，所以程序只会显示工作树与最新提交状态之间的差别。<br>
-“+”号标出的是新添加的行，被删除的行则用“-”号标出。<br>
-在执行 git commit命令之前先执行 git diff HEAD命令，查看本次提交与上次提交之间有什么差别，等确认完毕后再进行提交。这里的 HEAD 是指向当前分支中最新一次提交的指针。</p>
+<li>
+<p>提交修改</p>
+</li>
+<li>
+<p>创建远程分支</p>
+</li>
+<li>
+<p>发送pull request</p>
+</li>
+</ol>
+<h2 id="接收pull-request">接收pull request</h2>
+<p>一般步骤：</p>
+<ol>
+<li>
+<p>代码审查</p>
+</li>
+<li>
+<p>在本地环境中反应pull request 的内容</p>
+</li>
+<li>
+<p>采纳pull request</p>
+</li>
+</ol>
 <hr>
 <p>学习内容来自《GitHub入门与实践》</p></article>
     </section>

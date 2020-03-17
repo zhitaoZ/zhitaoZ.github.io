@@ -6,10 +6,28 @@
     <description>Recent content in Posts on zhitaoZ&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Mon, 16 Mar 2020 08:28:26 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Mar 2020 09:43:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhitaoz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Markdown 基础语法</title>
+      <link>https://zhitaoz.github.io/post/learnmd/</link>
+      <pubDate>Tue, 17 Mar 2020 09:43:38 +0800</pubDate>
+      
+      <guid>https://zhitaoz.github.io/post/learnmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git 尝试pull request&amp; 接收pull request</title>
+      <link>https://zhitaoz.github.io/post/learngit3/</link>
+      <pubDate>Mon, 16 Mar 2020 16:34:06 +0800</pubDate>
+      
+      <guid>https://zhitaoz.github.io/post/learngit3/</guid>
+      <description>&lt;p&gt;Git pull request相关操作&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Git分支及远程相关操作</title>

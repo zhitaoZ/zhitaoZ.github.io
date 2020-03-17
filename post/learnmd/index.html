@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+Markdown 基础语法
+</title>
+
+    
+
+
+  
+  <meta name="author" content="zhitaoZ" />
+  <meta name="description" content="No one is a island" />
+
+
+
+<meta name="generator" content="Hugo 0.65.3" />
+
+<link rel="canonical" href="https://zhitaoz.github.io/post/learnmd/" />
+
+
+<meta property="og:title" content="Markdown 基础语法" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhitaoz.github.io/post/learnmd/" />
+<meta property="article:published_time" content="2020-03-17T09:43:38+08:00" />
+<meta property="article:modified_time" content="2020-03-17T08:30:45+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Markdown 基础语法"/>
+<meta name="twitter:description" content=""/>
+
+
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background-image: url(/me/background.jpg);">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoz.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          Markdown 基础语法
+          <div class="sub header">@ zhitaoZ · Tuesday, Mar 17, 2020 · 2 minute read · Update at Mar 17, 2020</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;"><p>Markdown基础语法</p>
+<!-- raw HTML omitted -->
+<h1 id="markdown--标题">Markdown  标题</h1>
+<p>Markdown 标题有两种格式。</p>
+<h3 id="1使用--和---标记一级和二级标题">1、使用 = 和 - 标记一级和二级标题</h3>
+<p>= 和 - 标记语法格式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">我展示的是一级标题
+=================
+
+我展示的是二级标题
+-----------------
+</code></pre></div><h3 id="2使用--号标记">2、使用 # 号标记</h3>
+<p>使用 <strong>#</strong> 号可表示 1-6 级标题，一级标题对应一个 <strong>#</strong> 号，二级标题对应两个 <strong>#</strong> 号，以此类推。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"># 一级标题
+<span style="color:#75715e">## 二级标题
+</span><span style="color:#75715e">### 三级标题
+</span><span style="color:#75715e">#### 四级标题
+</span><span style="color:#75715e">##### 五级标题
+</span><span style="color:#75715e">###### 六级标题
+</span></code></pre></div><h1 id="markdown-段落">Markdown 段落</h1>
+<p>Markdown 段落没有特殊的格式，直接编写文字就好，<strong>段落的换行是使用两个以上空格加上回车</strong>。</p>
+<h2 id="字体">字体</h2>
+<p>Markdown 可以使用以下几种字体：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">*斜体文本*
+<span style="font-style:italic">_斜体文本_</span>
+**粗体文本**
+<span style="font-weight:bold">__粗体文本__</span>
+<span style="font-weight:bold">***粗斜体文本**</span>*
+<span style="font-weight:bold">___粗斜体文本___</span>
+</code></pre></div><h2 id="分隔线">分隔线</h2>
+<p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">***
+
+<span style="color:#66d9ef">*</span> * *
+
+<span style="font-weight:bold">****</span>*
+
+<span style="color:#66d9ef">-</span> - -
+
+----------
+</code></pre></div><h2 id="删除线">删除线</h2>
+<p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线 <strong>~~</strong> 即可。</p>
+<h2 id="下划线">下划线</h2>
+<p>下划线可以通过 HTML 的 **** 标签来实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">u</span>&gt;带下划线文本&lt;/<span style="color:#f92672">u</span>&gt;
+</code></pre></div><h2 id="脚注">脚注</h2>
+<p>脚注是对文本的补充说明。</p>
+<p>Markdown 脚注的格式如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">[^要注明的文本]
+</code></pre></div><h1 id="markdown-列表">Markdown 列表</h1>
+<p>Markdown 支持有序列表和无序列表。</p>
+<p>无序列表使用星号(*<strong><strong>)、加号(<strong>+</strong>)或是减号(</strong>-</strong>)作为列表标记：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">*</span> 第一项
+<span style="color:#66d9ef">*</span> 第二项
+<span style="color:#66d9ef">*</span> 第三项
+
++ 第一项
++ 第二项
++ 第三项
+
+
+<span style="color:#66d9ef">-</span> 第一项
+<span style="color:#66d9ef">-</span> 第二项
+<span style="color:#66d9ef">-</span> 第三项
+</code></pre></div><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">1.</span> 第一项
+<span style="color:#66d9ef">2.</span> 第二项
+<span style="color:#66d9ef">3.</span> 第三项
+</code></pre></div><h3 id="列表嵌套">列表嵌套</h3>
+<p>列表嵌套只需在子列表中的选项添加四个空格即可：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">1.</span> 第一项：
+    <span style="color:#66d9ef">-</span> 第一项嵌套的第一个元素
+    <span style="color:#66d9ef">-</span> 第一项嵌套的第二个元素
+<span style="color:#66d9ef">2.</span> 第二项：
+    <span style="color:#66d9ef">-</span> 第二项嵌套的第一个元素
+    <span style="color:#66d9ef">-</span> 第二项嵌套的第二个元素
+</code></pre></div><h1 id="markdown-区块">Markdown 区块</h1>
+<p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">区块引用
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">菜鸟教程
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">学的不仅是技术更是梦想
+</span></code></pre></div><p>另外区块是可以嵌套的，一个 <strong>&gt;</strong> 符号是最外层，两个 <strong>&gt;</strong> 符号是第一层嵌套，以此类推：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">最外层
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">&gt; 第一层嵌套
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">&gt; &gt; 第二层嵌套
+</span></code></pre></div><h3 id="区块中使用列表">区块中使用列表</h3>
+<p>区块中使用列表实例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">区块中使用列表
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">1. 第一项
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">2. 第二项
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">+ 第一项
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">+ 第二项
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">+ 第三项
+</span></code></pre></div><h3 id="列表中使用区块">列表中使用区块</h3>
+<p>如果要在列表项目内放进区块，那么就需要在 <strong>&gt;</strong> 前添加四个空格的缩进。</p>
+<p>区块中使用列表实例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">*</span> 第一项
+<span style="color:#66d9ef">    &gt; </span><span style="font-style:italic">春眠不知晓，处处闻啼鸟。
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">    &gt; </span><span style="font-style:italic">夜来风雨声，花落知道少。
+</span><span style="font-style:italic"></span><span style="color:#66d9ef">*</span> 第二项
+</code></pre></div><h1 id="markdown-代码">Markdown 代码</h1>
+<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（<strong>`</strong>），例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#e6db74">`printf()`</span> 函数
+</code></pre></div><h3 id="代码区块">代码区块</h3>
+<p>代码区块使用 <strong>4 个空格</strong>或者一个<strong>制表符（Tab 键）</strong>。</p>
+<p>也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">```javascript
+</span><span style="color:#e6db74">$(document).ready(function () {
+</span><span style="color:#e6db74">    alert(&#39;hello world&#39;);
+</span><span style="color:#e6db74">});
+</span><span style="color:#e6db74">```</span>
+</code></pre></div><h1 id="markdown-链接">Markdown 链接</h1>
+<p>链接使用方法如下：</p>
+<pre><code>[链接名称](链接地址)
+
+或者
+
+&lt;链接地址&gt;
+</code></pre><p>例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">学习内容来自 [<span style="color:#f92672">菜鸟教程</span>](<span style="color:#a6e22e">https://www.runoob.com</span>)
+</code></pre></div><p>直接使用链接地址：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">&lt;https://www.runoob.com&gt;
+</code></pre></div><h3 id="高级链接">高级链接</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">链接也可以用变量来代替，文档末尾附带变量地址：
+这个链接用 1 作为网址变量 [Google][1]
+这个链接用 runoob 作为网址变量 [Runoob][runoob]
+然后在文档的结尾为变量赋值（网址）
+
+  [1]: http://www.google.com/
+  [runoob]: http://www.runoob.com/
+</code></pre></div><h1 id="markdown-图片">Markdown 图片</h1>
+<p>Markdown 图片语法格式如下：</p>
+<pre><code>![alt 属性文本](图片地址)
+
+![alt 属性文本](图片地址 &quot;可选标题&quot;)
+</code></pre><ul>
+<li>开头一个感叹号 !</li>
+<li>接着一个方括号，里面放上图片的替代文字</li>
+<li>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 &lsquo;title&rsquo; 属性的文字。</li>
+</ul>
+<p>使用实例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">![<span style="color:#f92672">RUNOOB 图标</span>](<span style="color:#a6e22e">http://static.runoob.com/images/runoob-logo.png</span>)
+
+![<span style="color:#f92672">RUNOOB 图标</span>](<span style="color:#a6e22e">http://static.runoob.com/images/runoob-logo.png &#34;RUNOOB&#34;</span>)
+</code></pre></div><p>也可以像网址那样对图片网址使用变量:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">这个链接用 1 作为网址变量 [RUNOOB][1].
+然后在文档的结尾为变量赋值（网址）
+
+[1]: http://static.runoob.com/images/runoob-logo.png
+</code></pre></div><p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <!-- raw HTML omitted --> 标签。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://static.runoob.com/images/runoob-logo.png&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50%&#34;</span>&gt;
+</code></pre></div><h1 id="markdown-表格">Markdown 表格</h1>
+<p>Markdown 制作表格使用 <strong>|</strong> 来分隔不同的单元格，使用 <strong>-</strong> 来分隔表头和其他行。</p>
+<p>语法格式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
+</code></pre></div><p>对齐方式</p>
+<p><strong>我们可以设置表格的对齐方式：</strong></p>
+<ul>
+<li><strong>-:</strong> 设置内容和标题栏居右对齐。</li>
+<li><strong>:-</strong> 设置内容和标题栏居左对齐。</li>
+<li><strong>:-:</strong> 设置内容和标题栏居中对齐。</li>
+</ul>
+<h1 id="markdown-高级技巧">Markdown 高级技巧</h1>
+<h3 id="支持的-html-元素">支持的 HTML 元素</h3>
+<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。</p>
+<p>目前支持的 HTML 元素有：<code>       </code>等。</p>
+<h3 id="转义">转义</h3>
+<p>Markdown 使用了很多特殊符号来表示特定的意义，如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">**文本加粗** 
+\*\* 正常显示星号 \*\*
+</code></pre></div><p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">\   反斜线
+`   反引号
+<span style="font-style:italic">*   星号
+</span><span style="font-style:italic">_</span>   下划线
+{}  花括号
+[]  方括号
+()  小括号
+#   井字号
++   加号
+<span style="color:#66d9ef">-</span>   减号
+.   英文句点
+!   感叹号
+</code></pre></div><h3 id="公式">公式</h3>
+<p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">$$
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
+\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\
+\end{vmatrix}
+${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
+$$
+</code></pre></div><hr>
+<p><a href="https://www.runoob.com/markdown/md-tutorial.html">学习内容来自菜鸟教程</a></p></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="/tags/markdown" title="markdown">markdown</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/psb25.jpg">
+      
+    </div>
+
+    <h3 class="ui header">zhitaoZ&#39;s blog<div class="sub header" style="margin-top: 0.5rem;">No one is a island</div>
+    </h3>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="All Tags"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="All Categories"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="/tags/c" title="c">c</a>
+    
+      <a class="ui label" href="/tags/git" title="git">git</a>
+    
+      <a class="ui label" href="/tags/markdown" title="markdown">markdown</a>
+    
+      <a class="ui label" href="/tags/%E7%BD%91%E7%AB%99" title="网站">网站</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="/categories/%E8%87%AA%E5%AD%A6" class="item">自学</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnmd/" class="item">Markdown 基础语法</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learngit3/" class="item">Git 尝试pull request&amp; 接收pull request</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learngit2/" class="item">Git分支及远程相关操作</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learngit1/" class="item">Git基本操作</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnc5/" class="item">C语言基础知识(五)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnc4/" class="item">C语言基础知识(四)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnc3/" class="item">C语言基础知识(三)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnc2/" class="item">C语言基础知识(二)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/learnc1/" class="item">C语言基础知识(一)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://zhitaoz.github.io/post/bblog/" class="item">hugo搭建博客步骤(windows)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui bottom attached center aligned segment">
+      
+      <p>© 2020 zhitaoZ&#39;s blog</p>
+      
+      <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="Home" onclick="window.location.href = 'https:\/\/zhitaoz.github.io\/'"></i>
+  </div>
+  <div class="item">
+    <i id="theme-switch" class="large link icon" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">Social Links</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu">
+          
+            <div class="item">
+              <a href="mailto:zhangzhitao@bupt.edu.cn">
+                <i class="large mail icon" title="email"></i>
+              </a>
+            </div>
+          
+
+          
+            <div class="item">
+              <a href="https://github.com/zhitaoZ" target="_blank">
+                <i class="large github icon" title="github"></i>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+        </nav>
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+
+
+
+  </body>
+</html>
